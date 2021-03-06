@@ -14,7 +14,9 @@ pipeline {
             script: "git rev-parse --abbrev-ref HEAD"
         )
         HOME = '.'
-    registry = "charf551/goforwork"
+    registry1 = "charf551/angular"
+    registry2 = "charf551/express"
+
     registryCredential = 'dockerhub'
     dockerImage = ''
 	  }
@@ -28,7 +30,7 @@ pipeline {
         stage ('Build angular pipeline') {
             steps {
                script { 
-                    dockerImage = docker.build(registry + ":AngularV"+"$BUILD_NUMBER","./angular-app/") 
+                    dockerImage = docker.build(registry1 + ":AngularV"+"$BUILD_NUMBER","./angular-app/") 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 
                     }
@@ -39,7 +41,7 @@ pipeline {
         stage ('Build express-server pipeline') {
             steps {
                 script { 
-                    dockerImage = docker.build(registry +":ExpressV"+ "$BUILD_NUMBER","./express-server/") 
+                    dockerImage = docker.build(registry2 +":ExpressV"+ "$BUILD_NUMBER","./express-server/") 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 
                     }
@@ -48,8 +50,8 @@ pipeline {
         }
       stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:AngularV$BUILD_NUMBER"
-        sh "docker rmi $registry:ExpressV$BUILD_NUMBER"
+        sh "docker rmi $registry1:AngularV$BUILD_NUMBER"
+        sh "docker rmi $registry1:ExpressV$BUILD_NUMBER"
       }
       }
                 

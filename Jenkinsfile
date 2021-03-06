@@ -27,8 +27,8 @@ pipeline {
         }
         stage ('Build angular pipeline') {
             steps {
+                sh 'cd angular-app/'
                script { 
-                   HOME = './angular-app'
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 

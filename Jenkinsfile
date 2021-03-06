@@ -30,7 +30,7 @@ pipeline {
         stage ('Build angular pipeline') {
             steps {
                script { 
-                    dockerImage = docker.build(registry1 + ":AngularV"+"$BUILD_NUMBER","./angular-app/") 
+                    dockerImage = docker.build(registry1 +":$BUILD_NUMBER","./angular-app/") 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 
                     }
@@ -41,7 +41,7 @@ pipeline {
         stage ('Build express-server pipeline') {
             steps {
                 script { 
-                    dockerImage = docker.build(registry2 +":ExpressV"+ "$BUILD_NUMBER","./express-server/") 
+                    dockerImage = docker.build(registry2 + ":$BUILD_NUMBER","./express-server/") 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 
                     }
@@ -50,8 +50,8 @@ pipeline {
         }
       stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry1:AngularV$BUILD_NUMBER"
-        sh "docker rmi $registry1:ExpressV$BUILD_NUMBER"
+        sh "docker rmi $registry1:$BUILD_NUMBER"
+        sh "docker rmi $registry2:$BUILD_NUMBER"
       }
       }
                 

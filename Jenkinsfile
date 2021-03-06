@@ -28,7 +28,7 @@ pipeline {
         stage ('Build angular pipeline') {
             steps {
                script { 
-                    dockerImage = docker.build(registry + "Angular V"+":$BUILD_NUMBER","./angular-app/") 
+                    dockerImage = docker.build(registry + ":Angular V"+"$BUILD_NUMBER","./angular-app/") 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 
                     }
@@ -39,7 +39,7 @@ pipeline {
         stage ('Build express-server pipeline') {
             steps {
                 script { 
-                    dockerImage = docker.build(registry +"Express V"+ ":$BUILD_NUMBER","./express-server/") 
+                    dockerImage = docker.build(registry +":Express V"+ "$BUILD_NUMBER","./express-server/") 
                     docker.withRegistry( '', registryCredential ) { 
                     dockerImage.push() 
                     }

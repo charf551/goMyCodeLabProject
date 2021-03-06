@@ -14,6 +14,8 @@ pipeline {
             script: "git rev-parse --abbrev-ref HEAD"
         )
         HOME = '.'
+    registry = "charf551/goforwork"
+    registryCredential = 'dockerhub'
 	  }
 
     stages {

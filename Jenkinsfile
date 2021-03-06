@@ -23,8 +23,8 @@ pipeline {
             }
         }
         stage ('Execute CI pipeline') {
-            agent {
-                docker { image 'node:12-buster-slim' }
+            steps {
+                def Angular_app = docker.build('angular_app','./angular-app/')
             }
         }
     }

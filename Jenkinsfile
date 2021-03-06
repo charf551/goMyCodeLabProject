@@ -32,7 +32,7 @@ pipeline {
                script { 
                     dockerImage = docker.build(registry1,"./angular-app/") 
                     docker.withRegistry( '', registryCredential ) { 
-                    dockerImage.push($BUILD_NUMBER) 
+                    dockerImage.push("$BUILD_NUMBER") 
                     dockerImage.push('latest') 
                     }
                 }

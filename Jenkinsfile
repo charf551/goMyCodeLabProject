@@ -46,6 +46,12 @@ pipeline {
                 }
             }
         }
+      stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:AngularV$BUILD_NUMBER"
+        sh "docker rmi $registry:ExpressV$BUILD_NUMBER"
+
+      }
                 
     }
 }

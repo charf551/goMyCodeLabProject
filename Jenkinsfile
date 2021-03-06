@@ -30,9 +30,10 @@ pipeline {
         stage ('Build angular pipeline') {
             steps {
                script { 
-                    dockerImage = docker.build(registry1 +":$BUILD_NUMBER","./angular-app/") 
+                    dockerImage = docker.build(registry1,"./angular-app/") 
                     docker.withRegistry( '', registryCredential ) { 
-                    dockerImage.push() 
+                    dockerImage.push($BUILD_NUMBER) 
+                    dockerImage.push('latest') 
                     }
                 }
 

@@ -24,8 +24,15 @@ pipeline {
         }
         stage ('Execute CI pipeline') {
             steps {
-                def Angular_app = docker.build('angular_app','./angular-app/')
+                agent {
+                dockerfile {dir 'angular-app'}
+            }
             }
         }
+                stage('Execute CI_MangoDB pipeline'){
+                    steps {
+                        docker.image('mongo').withRun('-p 27017:27017')
+                    }
+                }  
     }
 }

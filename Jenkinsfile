@@ -22,17 +22,22 @@ pipeline {
                 sh "echo '${env.GIT_LATEST_COMMIT_EDITOR}'"
             }
         }
-        stage ('Execute CI pipeline') {
+        stage ('Build angular pipeline') {
             steps {
                 agent {
                 dockerfile {dir 'angular-app'}
-            }
+                     }
+
             }
         }
-                stage('Execute CI_MangoDB pipeline'){
-                    steps {
-                        docker.image('mongo').withRun('-p 27017:27017')
-                    }
-                }  
+        stage ('Build express-server pipeline') {
+            steps {
+                agent {
+                dockerfile {dir 'express-server'}
+                     }
+
+            }
+        }
+                
     }
 }

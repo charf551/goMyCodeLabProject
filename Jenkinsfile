@@ -16,6 +16,7 @@ pipeline {
         HOME = '.'
     registry = "charf551/goforwork"
     registryCredential = 'dockerhub'
+    dockerImage = ''
 	  }
 
     stages {
@@ -26,9 +27,13 @@ pipeline {
         }
         stage ('Build angular pipeline') {
             steps {
-                agent {
-                dockerfile {dir 'angular-app'}
-                     }
+               script { 
+                   HOME = './angular-app'
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    docker.withRegistry( '', registryCredential ) { 
+                    dockerImage.push() 
+                    }
+                }
 
             }
         }

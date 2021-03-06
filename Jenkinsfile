@@ -38,10 +38,12 @@ pipeline {
         }
         stage ('Build express-server pipeline') {
             steps {
-                agent {
-                dockerfile {dir 'express-server'}
-                     }
-
+                script { 
+                    dockerImage = docker.build(registry + ":$BUILD_NUMBER","./express-server/") 
+                    docker.withRegistry( '', registryCredential ) { 
+                    dockerImage.push() 
+                    }
+                }
             }
         }
                 

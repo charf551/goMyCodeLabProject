@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 })
 
 // Set our api routes
-app.use('/', api);
+app.use('/api', api);
 
 
 /**

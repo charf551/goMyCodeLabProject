@@ -1,6 +1,6 @@
 # mean-stack-docker
 ## MEAN Docker
-App to show a Docker Compose set up for a mean application running Angular 7.
+App to show a Docker Compose set up for a mean application running Angular 7 .
 
 ## Set up
 Make sure you have docker and docker-compose installed.

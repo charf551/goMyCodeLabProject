@@ -3,13 +3,13 @@ version: '3' # specify docker-compose version
 # Define the services/ containers to be run
 services:
  angular: # name of the first service
-  image: charf551/goforwork:Angular:latest # specify the directory of the Dockerfile
+  image: charf551/angular:latest # specify the directory of the Dockerfile
 
   ports:
   - "4200:80" # specify port mapping
  
  express: # name of the second service
-  image: charf551/goforwork:Express:latest # specify the directory of the Dockerfile
+  image: charf551/express:latest # specify the directory of the Dockerfile
   ports:
   - "3000:3000" #specify ports mapping
   links:

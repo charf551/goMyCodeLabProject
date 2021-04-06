@@ -60,7 +60,7 @@ pipeline {
       }
       stage('Apply Kubernetes Files') {
       steps {
-          withKubeConfig([credentialsId: 'kubernet']) {
+          withKubeConfig([credentialsId: 'kubernet', serverUrl: 'https://192.168.149.2:6443']) {
           sh 'kubectl apply -f angular.yaml'
         }
       }

@@ -60,7 +60,7 @@ pipeline {
       }
       stage('Apply Kubernetes Files') {
       steps {
-          withKubeConfig([credentialsId: 'kubernetes']) {
+          withKubeConfig([credentialsId: 'KubeJenkins']) {
           sh 'kubectl apply -f angular.yaml'
         }
       }

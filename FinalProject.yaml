@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-deployment
+  labels:
+    app: angular-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: angular-app
+  template:
+    metadata:
+      labels:
+        app: angular-app
+    spec:
+      containers:
+      - name: angular
+        image: charf551/angular:latest
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-deplyment
+  labels:
+    app: express-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: express-app
+  template:
+    metadata:
+      labels:
+        app: express-app
+    spec:
+      containers:
+      - name: express
+        image: charf551/express:latest
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+  labels:
+    app: mongodb-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mongodb-app
+  template:
+    metadata:
+      labels:
+        app: mongodb-app
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo

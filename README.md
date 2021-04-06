@@ -1,19 +1,10 @@
-# mean-stack-docker
-## MEAN Docker
-App to show a Docker Compose set up for a mean application running Angular 7 .
+# Deploy MEAN Stack Application with jenkins and kubernates
 
 ## Set up
-Make sure you have docker and docker-compose installed.
-
-Docker-compose should be version 1.6 or higher.
-
-### Clone the repo
-```bash
-$ git clone https://github.com/hsouna/goMyCodeLabProject
-```
- ### Run docker
- ```bash
- $ docker-compose up
- ```
-
+- kubectl create serviceaccount jenkins
+- kubectl create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
+- kubectl get secret
+- kubectl describe secrets  jenkins-token-brw7b // get the token identification to create credential config in jenkins 
+- add dockerhub identification in the credential config
+- apply services.yaml in kubernates with kubctl apply -f services.yaml
  

@@ -58,6 +58,12 @@ pipeline {
         sh "docker rmi $registry2:latest"
       }
       }
+      stage('Apply Kubernetes Files') {
+      steps {
+          withKubeConfig([credentialsId: 'kubernet']) {
+          sh 'kubectl apply -f angular.yaml'
+        }
+      }
                 
     }
 }

@@ -62,7 +62,7 @@ pipeline {
       steps {
           withKubeConfig([credentialsId: 'KubeJenkins', serverUrl: 'https://192.168.149.2:6443']) {
 	  sh 'kubectl delete deployment --all'	  
-          sh 'kubectl apply -f angular.yaml'
+          sh 'kubectl apply -f FinalProject.yaml'
         }
       }
                 

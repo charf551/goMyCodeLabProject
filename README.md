@@ -16,4 +16,4 @@ $ git clone https://github.com/hsouna/goMyCodeLabProject
  $ docker-compose up
  ```
 
- App should be running in `localhost:8181`
+ 

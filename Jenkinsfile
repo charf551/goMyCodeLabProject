@@ -61,7 +61,9 @@ pipeline {
       stage('Apply Kubernetes Files') {
       steps {
           withKubeConfig([credentialsId: 'KubeJenkins', serverUrl: 'https://192.168.149.2:6443']) {
-	  sh 'kubectl delete deployment --all'	  
+	  sh 'kubectl delete deployment angular-deployment'	
+	  sh 'kubectl delete deployment express-deplyment'
+	  sh 'kubectl delete deployment mongodb-deployment'	  
           sh 'kubectl apply -f FinalProject.yaml'
         }
       }
